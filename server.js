@@ -9,15 +9,12 @@ const port = 3000;
 //middleware
 app.use(express.json());
 
-//mongo connect
-
 //routes
 app.get("/hello", (req, res) => {
   res.send("hello");
 });
 
 app.use("/api/v1/releasenote", releasenote);
-
 //app.get(/api/v1/releasenote) - get all the release node
 //app.post(/api/v1/releasenote) - create new release note
 
