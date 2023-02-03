@@ -28,7 +28,6 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: nyka/api_nykadashboard
-          tags: v1, latest
           registry: docker.io
           dockerfile: Dockerfile.ci
           username: ${{ secrets.DOCKER_USERNAME }}
