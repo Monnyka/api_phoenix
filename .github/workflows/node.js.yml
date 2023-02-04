@@ -33,7 +33,7 @@ jobs:
         with:
           image: nyka/api_nykadashboard
           platforms: linux/amd64,linux/arm64
-          tags: user/app:latest
+          tags: latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
