@@ -26,6 +26,8 @@ jobs:
 
         name: Set up Docker Buildx
       - uses: docker/setup-buildx-action@v2
+        with:
+          platforms: arm64
 
         name: Build & push Docker image
       - uses: mr-smithers-excellent/docker-build-push@v5
