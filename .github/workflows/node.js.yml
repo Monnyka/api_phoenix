@@ -29,6 +29,6 @@ jobs:
         with:
           image: nyka/api_dashboard
           tags: v1, latest
-          registry: registry-url.io
+          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
