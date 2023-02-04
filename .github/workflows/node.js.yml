@@ -24,14 +24,11 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
 
-        name: Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v2
-
         name: Build & push Docker image
       - uses: docker/build-push-action@v4
         with:
           image: nyka/api_nykadashboard
-          tags: v1, latest
+          tags: latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
