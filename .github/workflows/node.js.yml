@@ -25,7 +25,7 @@ jobs:
       - run: npm test
 
         name: Build & push Docker image
-      - uses: docker/build-push-action@v4
+      - uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: nyka/api_nykadashboard
           tags: latest
