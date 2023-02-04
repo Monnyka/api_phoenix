@@ -28,10 +28,15 @@ jobs:
       - uses: docker/setup-buildx-action@v2
 
       - uses: mr-smithers-excellent/docker-build-push@v5
+
+        name: Set up QEMU
+      - uses: docker/setup-qemu-action@v2
+
         name: Build & push Docker image
         with:
           image: nyka/api_nykadashboard
-          tags: v1, latest
+          platforms: linux/amd64,linux/arm64
+          tags: user/app:latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
