@@ -26,7 +26,7 @@ jobs:
 
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
-          with:
+        with:
           image: nyka/api_dashboard
           tags: v1, latest
           registry: registry-url.io
