@@ -21,7 +21,7 @@ app.use("/api/v1/releasenote", releasenote);
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    app.listen(port, console.log("Server is listening on Port 3000"));
+    app.listen(port, console.log("Server is listening on port 3000"));
   } catch (error) {
     console.log(error);
   }
