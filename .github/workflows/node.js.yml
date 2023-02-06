@@ -44,4 +44,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           push: true
-          tags: nyka/api_nyka_dashboard:latest
+          tags: nyka/api_nykadashboard:latest
