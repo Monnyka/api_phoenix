@@ -7,14 +7,15 @@ require("dotenv").config();
 const port = 3000;
 
 //will delete
-const connectString = "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority"
+const connectString =
+  "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority";
 
 //middleware
 app.use(express.json());
 
 //routes
 app.get("/hello", (req, res) => {
-  res.send("hello everyone, how are you...");
+  res.send("hello everyone");
 });
 
 app.use("/api/v1/releasenote", releasenote);
