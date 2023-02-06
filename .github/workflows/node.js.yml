@@ -40,7 +40,6 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: linux/amd64,arm
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           push: true
