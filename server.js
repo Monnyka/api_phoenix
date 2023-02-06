@@ -14,7 +14,7 @@ app.use(express.json());
 
 //routes
 app.get("/hello", (req, res) => {
-  res.send("hello everyone");
+  res.send("hello everyone, how are you.");
 });
 
 app.use("/api/v1/releasenote", releasenote);
