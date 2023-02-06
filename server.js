@@ -6,6 +6,9 @@ require("dotenv").config();
 
 const port = 3000;
 
+//willdelete
+const connectString = "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority"
+
 //middleware
 app.use(express.json());
 
@@ -20,7 +23,7 @@ app.use("/api/v1/releasenote", releasenote);
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(connectString); //will change connection string with process.env.MONGO_URI
     app.listen(port, console.log("Server is listening on port 3000"));
   } catch (error) {
     console.log(error);

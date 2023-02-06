@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { url } = require("wd/lib/commands");
 mongoose.set("strictQuery", false);
 
 const connectDB = (url) => {
