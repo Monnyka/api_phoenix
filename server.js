@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const releasenote = require("./routes/releasenote");
+const tasks = require("./routes/task");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
@@ -14,13 +14,8 @@ const connectString =
 app.use(express.json());
 
 //routes
-app.get("/hello", (req, res) => {
-  res.send("hello everyone");
-});
 
-app.use("/api/v1/releasenote", releasenote);
-//app.get(/api/v1/releasenote) - get all the release node
-//app.post(/api/v1/releasenote) - create new release note
+app.use('/api/v1/tasks', tasks);
 
 const start = async () => {
   try {
