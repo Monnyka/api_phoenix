@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const port = 3000;
 
-//will delete
+//Connection String (will delete)
 const connectString =
   "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority";
 
@@ -14,7 +14,6 @@ const connectString =
 app.use(express.json());
 
 //routes
-
 app.use('/api/v1/tasks', tasks);
 
 const start = async () => {
