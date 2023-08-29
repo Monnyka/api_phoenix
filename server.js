@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const port = 3000;
 
-//Connection String (will delete)
+//Connection String (will delete) test
 const connectString =
   "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority";
 
