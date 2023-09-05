@@ -45,3 +45,14 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           push: true
           tags: nyka/api_nykadashboard:latest
+      
+        name: ntfy-success-notifications
+      - uses: niniyas/ntfy-action@master
+        if: success()
+        with:
+          url: 'https://ntfy.monnyka.top'
+          topic: 'server'
+          priority: 4
+          headers: '{"authorization": "Basic 123456", "another-one": "Basic 123456"}'
+          tags: +1,partying_face,action,successfully,completed
+          details: Workflow has been successfully completed!
