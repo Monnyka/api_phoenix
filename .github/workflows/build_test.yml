@@ -55,4 +55,4 @@ jobs:
           priority: 4
           headers: '{"authorization": "Basic 123456", "another-one": "Basic 123456"}'
           tags: +1,partying_face,action,successfully,completed
-          details: Workflow has been successfully completed!, thanks
+          details: Workflow has been successfully completed!, thanks test.
