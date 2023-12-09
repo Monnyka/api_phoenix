@@ -1,20 +1,21 @@
 const express = require("express");
 const app = express();
 const tasks = require("./routes/task");
+const notFound = require("./middleware/not-found");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
 const port = 3000;
 
-//Connection String (will delete) test
-const connectString =
-  "mongodb+srv://nyka:1234@projectone.foglf.mongodb.net/?retryWrites=true&w=majority";
+//Connection String (will delete)
+const connectString = "mongodb://root:example@192.168.1.126:27017/";
 
-//middleware ff
+//middleware
 app.use(express.json());
 
 //routes
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
 
 const start = async () => {
   try {
@@ -26,5 +27,3 @@ const start = async () => {
 };
 
 start();
-
-//Feature#1 Complete
