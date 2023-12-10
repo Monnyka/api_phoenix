@@ -2,14 +2,14 @@ const express = require("express");
 const app = express();
 const tasks = require("./routes/task");
 const notFound = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/errorHandlerMiddlerware");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
-const port = 3000;
+const port = 3001;
 
 //Connection String (will delete)
-const connectString = "mongodb://root:example@192.168.1.126:27017/";
+const connectString = "mongodb://192.168.1.126:27017/";
 
 //middleware
 app.use(express.json());
