@@ -6,23 +6,23 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-//Connection String (will delete)
-const connectString = "mongodb://192.168.1.126:27017/";
+//Connection String
+const connectString = process.env.MONGOURL;
 
-//middleware
+//Middleware
 app.use(express.json());
 
-//routes
+//Routes
 app.use("/api/v1/tasks", tasks);
 app.use(notFound);
 app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(connectString); //will change connection string with process.env.MONGO_URI
-    app.listen(port, console.log("Server is listening on port 3000"));
+    await connectDB(connectString);
+    app.listen(port, console.log("Server is listening on port " + port));
   } catch (error) {
     console.log(error);
   }

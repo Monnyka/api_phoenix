@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
+require("dotenv").config();
 
 const connectDB = (url) => {
   const option = {
-    dbName: "phoenix",
-    user: "admin",
-    pass: "Nyka*277#",
-    authMechanism: "DEFAULT",
+    dbName: process.env.DBNAME,
+    user: process.env.DBUSER,
+    pass: process.env.DBPASS,
+    authMechanism: process.env.DBAUTHMECHANISM,
   };
   return mongoose
     .connect(url, option)
-    .then(() => console.log("Connected to database"))
+    .then(() => console.log("Connected to database successfully"))
     .catch((err) => console.log(err));
 };
 
