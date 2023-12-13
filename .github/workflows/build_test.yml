@@ -57,5 +57,5 @@ jobs:
 
       - name: Notify Watchtower
         run: |
-          curl -X POST http://watchtower.monnyka.top/v1/update
+          curl -H "Authorization: Bearer BvnmaxcdYTGDndk5rSq1" http://watchtower.monnyka.top/v1/update
         if: success()

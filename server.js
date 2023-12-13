@@ -23,7 +23,7 @@ const start = async () => {
   try {
     await connectDB(connectString);
     app.listen(port, console.log("Server is listening on port " + port));
-    console.log("test v1");
+    console.log("test v2");
   } catch (error) {
     console.log(error);
   }
