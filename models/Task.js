@@ -9,7 +9,8 @@ const TaskSchema = new mongoose.Schema({
   description: {
     type: String,
     trim: true,
-    maxlength: [250, "name can not be more than 250 characters"],
+    maxlength: [250, "description can not be more than 250 characters"],
+    default: "Description",
   },
   completed: {
     type: Boolean,
