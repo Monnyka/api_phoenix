@@ -6,8 +6,6 @@ name: Build Test
 on:
   push:
     branches: ["master"]
-  pull_request:
-    branches: ["master"]
 
 jobs:
   build:
@@ -56,3 +54,8 @@ jobs:
           headers: '{"authorization": "Basic 123456", "another-one": "Basic 123456"}'
           tags: +1,partying_face,action,successfully,completed
           details: Workflow has been successfully completed!
+
+      - name: Notify Watchtower
+        run: |
+          curl -H "Authorization: Bearer BvnmaxcdYTGDndk5rSq1" https://watchtower.monnyka.top/v1/update
+        if: success()
