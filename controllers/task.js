@@ -3,7 +3,7 @@ const asyncWrapper = require("../middleware/async");
 const { createCustomerError } = require("../error/custom-error");
 
 const getAllItems = asyncWrapper(async (req, res) => {
-  const tasks = await Task.find({});
+  const tasks = await Task.find(req.query);
   res.status(200).json({ tasks });
 });
 
