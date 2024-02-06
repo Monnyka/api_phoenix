@@ -2,7 +2,6 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const asyncWrapper = require("../middleware/async");
 const { createCustomerError } = require("../error/custom-error");
-const bcrypt = require("bcryptjs");
 
 const isEmailExists = async (email) => {
   return await User.exists({ email });
@@ -16,7 +15,7 @@ const register = asyncWrapper(async (req, res, next) => {
     );
   }
   if (password.length < 6) {
-    return next(createCustomerError("Please provide 6 digit password", 400));
+    return next(createCustomerError("Please provide 6 digits password", 400));
   }
 
   // Check if the email already exists
@@ -25,15 +24,28 @@ const register = asyncWrapper(async (req, res, next) => {
     return next(createCustomerError("Email already exists", 400));
   }
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-  const tempUser = { name, email, password: hashedPassword };
-  const user = await User.create({ ...tempUser });
-  res.status(StatusCodes.CREATED).json({ user });
+  const user = await User.create({ ...req.body });
+  const token = user.createJWT();
+  res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token });
 });
 
-const login = async (req, res) => {
-  res.send("Login User");
-};
+const login = asyncWrapper(async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(createCustomerError("Please provide email and password", 401));
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next(createCustomerError("Invalid credentials", 401));
+  }
+
+  const isPasswordCorrect = await user.comparePassword(password);
+  if (!isPasswordCorrect) {
+    return next(createCustomerError("Invalid credentials", 401));
+  }
+
+  const token = user.createJWT();
+  res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
+});
 
 module.exports = { register, login };
