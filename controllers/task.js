@@ -3,11 +3,14 @@ const asyncWrapper = require("../middleware/async");
 const { createCustomerError } = require("../error/custom-error");
 
 const getAllItems = asyncWrapper(async (req, res) => {
-  const tasks = await Task.find(req.query);
+  const tasks = await Task.find({ createdBy: req.user.userId }).sort(
+    "createdAt"
+  );
   res.status(200).json({ tasks });
 });
 
 const createTask = asyncWrapper(async (req, res) => {
+  req.body.createdBy = req.user.userId;
   const task = await Task.create(req.body);
   res.status(201).json({ task });
 });

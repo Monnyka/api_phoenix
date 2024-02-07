@@ -5,6 +5,8 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 
+const authentication = require("./middleware/authentication");
+
 //Router
 const authRouter = require("./routes/auth");
 const tasks = require("./routes/task");
@@ -19,7 +21,7 @@ app.use(express.json());
 
 //Routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/tasks", tasks);
+app.use("/api/v1/tasks", authentication, tasks);
 
 //error handler
 app.use(notFound);
