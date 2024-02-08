@@ -16,8 +16,11 @@ const createTask = asyncWrapper(async (req, res) => {
 });
 
 const getTask = asyncWrapper(async (req, res) => {
-  const { id: taskID } = req.params;
-  const task = await Task.findOne({ _id: taskID });
+  const {
+    user: { userId },
+    params: { id: taskID },
+  } = req;
+  const task = await Task.findOne({ _id: taskID, createdBy: userId });
   if (!task) {
     return next(createCustomerError("There is no task with the id: ${taskID}"));
   }
@@ -25,20 +28,30 @@ const getTask = asyncWrapper(async (req, res) => {
 });
 
 const deleteTask = asyncWrapper(async (req, res) => {
-  const { id: taskID } = req.params;
-  const task = await Task.findOneAndDelete({ _id: taskID });
+  const {
+    user: { userId },
+    params: { id: taskID },
+  } = req;
+  const task = await Task.findOneAndDelete({ _id: taskID, createdBy: userId });
   if (!task) {
-    return next(createCustomerError("There is no task with the id: ${taskID}"));
+    return next(createCustomerError(`There is no task with the id: ${taskID}`));
   }
   res.status(200).json({ task });
 });
 
 const updateTask = asyncWrapper(async (req, res) => {
-  const { id: taskID } = req.params;
-  const task = await Task.findByIdAndUpdate({ _id: taskID }, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  const {
+    user: { userId },
+    params: { id: taskID },
+  } = req;
+  const task = await Task.findByIdAndUpdate(
+    { _id: taskID, createdBy: userId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
   if (!task) {
     return next(createCustomerError("There is no task with the id: ${taskID}"));
   }
