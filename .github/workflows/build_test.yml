@@ -21,8 +21,9 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
+      - run: npm start server.js
 
-        name: Set up QEMU
+        name: Set Up QEMU
       - uses: docker/setup-qemu-action@v3
 
         name: Set up Docker Buildx
