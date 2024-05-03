@@ -23,6 +23,8 @@ const port = process.env.PORT || 3001;
 const connectString = process.env.MONGOURL;
 
 //Middleware
+// Trust the first proxy in front of the app (e.g., Nginx, Heroku, etc.)
+app.set("trust proxy", 1);
 app.use(
   ratelimiter({
     windowMs: 15 * 60 * 1000, // 15 minutes
