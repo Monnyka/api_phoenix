@@ -7,7 +7,7 @@ const getAllItems = asyncWrapper(async (req, res) => {
   let query = { createdBy: req.user.userId };
 
   if (completed !== undefined) {
-    query.completed = completed.toLowerCase() === "true";
+    query.completed = completed === true;
   }
   const tasks = await Task.find({ query }).sort("createdAt");
   res.status(200).json({ tasks });
