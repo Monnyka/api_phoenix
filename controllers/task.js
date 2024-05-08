@@ -3,13 +3,14 @@ const asyncWrapper = require("../middleware/async");
 const { createCustomerError } = require("../error/custom-error");
 
 const getAllItems = asyncWrapper(async (req, res) => {
-  const { completed } = req.query;
-  let query = { createdBy: req.user.userId };
+  const filter = { createdBy: req.user.userId };
 
-  if (completed !== undefined) {
-    query.completed = completed === true;
+  if (req.query.completed === "true") {
+    filter.completed = true;
+  } else if (req.query.completed === "false") {
+    filter.completed = false;
   }
-  const tasks = await Task.find({ query }).sort("createdAt");
+  const tasks = await Task.find(filter).sort("createdAt");
   res.status(200).json({ tasks });
 });
 
