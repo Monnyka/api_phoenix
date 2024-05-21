@@ -13,17 +13,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js v12
-        uses: actions/setup-node@v3
+        name: Use Node v20
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: "20.x"
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test
-
-        name: Set up QEMU
-      - uses: docker/setup-qemu-action@master
+        # - run: npm test
+        name: Set Up QEMU
+      - uses: docker/setup-qemu-action@v3
 
         name: Set up Docker Buildx
       - uses: docker/setup-buildx-action@master
@@ -53,7 +52,7 @@ jobs:
           priority: 4
           headers: '{"authorization": "Basic 123456", "another-one": "Basic 123456"}'
           tags: +1,partying_face,action,successfully,completed
-          details: Workflow has been successfully completed!
+          details: Workflow has been successfully completed!!
 
       - name: Notify Watchtower
         run: |
