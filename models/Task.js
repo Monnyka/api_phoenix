@@ -32,6 +32,11 @@ const TaskSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Please provice user"],
     },
+    personInCharge: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );
