@@ -57,7 +57,7 @@ jobs:
           tags: +1,partying_face,action,successfully,completed
           details: Workflow has been successfully completed!
 
-      - name: Notify Watchtower
-        run: |
-          curl -H "Authorization: Bearer BvnmaxcdYTGDndk5rSq1" https://watchtower.monnyka.top/v1/update
-        if: success()
+      # - name: Notify Watchtower
+      #   run: |
+      #     curl -H "Authorization: Bearer BvnmaxcdYTGDndk5rSq1" https://watchtower.monnyka.top/v1/update
+      #   if: success()

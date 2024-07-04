@@ -27,7 +27,7 @@ const getTask = asyncWrapper(async (req, res) => {
   } = req;
   const task = await Task.findOne({ _id: taskID, createdBy: userId });
   if (!task) {
-    return next(createCustomerError("There is no task with the id: ${taskID}"));
+    return next(createCustomerError(`There is no task with the id: ${taskID}`));
   }
   res.status(200).json({ task });
 });
@@ -58,7 +58,7 @@ const updateTask = asyncWrapper(async (req, res) => {
     }
   );
   if (!task) {
-    return next(createCustomerError("There is no task with the id: ${taskID}"));
+    return next(createCustomerError(`There is no task with the id: ${taskID}`));
   }
   res.status(200).json({ task });
 });
