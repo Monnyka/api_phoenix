@@ -10,6 +10,14 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    scope: {
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "in-progress", "completed"],
+      default: "pending",
+    },
     tasks: [
       {
         type: mongoose.Schema.Types.ObjectId,
