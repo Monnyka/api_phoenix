@@ -39,7 +39,27 @@ const getProjectDetails = asyncWrapper(async (req, res, next) => {
   }
 });
 
+// Delete Project
+const deleteProject = asyncWrapper(async (req, res, next) => {
+  const { id: projectId } = req.params;
+
+  try {
+    const project = await Project.findByIdAndDelete(projectId);
+
+    if (!project) {
+      return next(
+        createCustomError(`No project found with ID ${projectId}`, 404)
+      );
+    }
+
+    res.status(200).json({ msg: "Project deleted successfully" });
+  } catch (error) {
+    return next(createCustomError("Failed to delete project", 500));
+  }
+});
+
 module.exports = {
   createProject,
   getProjectDetails,
+  deleteProject,
 };
