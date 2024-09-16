@@ -39,6 +39,16 @@ const getProjectDetails = asyncWrapper(async (req, res, next) => {
   }
 });
 
+//Get Project list
+const getProjectList = asyncWrapper(async (req, res, next) => {
+  try {
+    const projects = await Project.find().exec();
+    res.status(200).json({ projects });
+  } catch (error) {
+    return next(createCustomError("Failed to get project list", 500));
+  }
+});
+
 // Delete Project
 const deleteProject = asyncWrapper(async (req, res, next) => {
   const { id: projectId } = req.params;
@@ -61,5 +71,6 @@ const deleteProject = asyncWrapper(async (req, res, next) => {
 module.exports = {
   createProject,
   getProjectDetails,
+  getProjectList,
   deleteProject,
 };
