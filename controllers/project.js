@@ -68,9 +68,31 @@ const deleteProject = asyncWrapper(async (req, res, next) => {
   }
 });
 
+//Edit Project
+const updateProject = asyncWrapper(async (req, res, next) => {
+  const { id: projectId } = req.params;
+
+  try {
+    const project = await Project.findByIdAndUpdate(projectId, req.body, {
+      new: true, // Returns the updated document
+      runValidators: true, // Ensures validation of the update
+    });
+
+    if (!project) {
+      return next(
+        createCustomError(`No project found with ID ${projectId}`, 404)
+      );
+    }
+    res.status(200).json({ msg: "Project updated successfully", project });
+  } catch (error) {
+    return next(createCustomError("Failed to edit project", 500));
+  }
+});
+
 module.exports = {
   createProject,
   getProjectDetails,
   getProjectList,
   deleteProject,
+  updateProject,
 };
