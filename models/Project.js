@@ -10,9 +10,11 @@ const projectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    scope: {
-      type: String,
-    },
+    scope: [
+      {
+        type: String,
+      },
+    ],
     status: {
       type: String,
       enum: ["pending", "in-progress", "completed"],
@@ -24,6 +26,33 @@ const projectSchema = new mongoose.Schema(
         ref: "Task",
       },
     ],
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: [true, "Please provice user"],
+    },
+    users: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    ], // Array of objects containing user ID, name, and role
+    member: [
+      {
+        users: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+        role: {
+          type: String,
+          required: true,
+          enum: ["admin", "developer", "viewer"], // Example roles
+          default: "viewer",
+        },
+      },
+    ], // Array of objects containing user ID, name, and role
   },
   { timestamps: true }
 );

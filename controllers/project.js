@@ -25,9 +25,14 @@ const createProject = asyncWrapper(async (req, res, next) => {
 // Get project details
 const getProjectDetails = asyncWrapper(async (req, res, next) => {
   const { id: projectId } = req.params;
-
   try {
-    const project = await Project.findById(projectId).populate("tasks").exec();
+    const project = await Project.findById(projectId)
+      .populate("tasks")
+      .populate({
+        path: "member.users", // Populates the user field in the member array
+        select: "name email", // Optional: only return the user's name and email
+      })
+      .exec();
     if (!project) {
       return next(
         createCustomError(`No project found with ID ${projectId}`, 404)
@@ -62,7 +67,7 @@ const deleteProject = asyncWrapper(async (req, res, next) => {
       );
     }
 
-    res.status(200).json({ msg: "Project deleted successfully" });
+    res.status(200).json({ msg: "Project has been deleted successfully" });
   } catch (error) {
     return next(createCustomError("Failed to delete project", 500));
   }
@@ -83,7 +88,9 @@ const updateProject = asyncWrapper(async (req, res, next) => {
         createCustomError(`No project found with ID ${projectId}`, 404)
       );
     }
-    res.status(200).json({ msg: "Project updated successfully", project });
+    res
+      .status(200)
+      .json({ msg: "Project has been updated successfully", project });
   } catch (error) {
     return next(createCustomError("Failed to edit project", 500));
   }
