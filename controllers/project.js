@@ -44,7 +44,7 @@ const getProjectDetails = asyncWrapper(async (req, res, next) => {
   }
 });
 
-//Get Project list
+//Get Project List
 const getProjectList = asyncWrapper(async (req, res, next) => {
   try {
     const projects = await Project.find().exec();
