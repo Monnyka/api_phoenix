@@ -40,7 +40,9 @@ const getProjectDetails = asyncWrapper(async (req, res, next) => {
     }
     res.status(200).json({ project });
   } catch (error) {
-    return next(createCustomError(`Failed to get project details`, 500));
+    return next(
+      createCustomError(`Failed to get project details: ${error.message}`, 500)
+    );
   }
 });
 

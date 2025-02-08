@@ -10,7 +10,15 @@ const getAllItems = asyncWrapper(async (req, res) => {
   } else if (req.query.completed === "false") {
     filter.completed = false;
   }
-  const tasks = await Task.find(filter).sort("createdAt");
+
+  const limit = parseInt(req.query.limit, 10) || 10; // Default limit is 10
+  const offset = parseInt(req.query.offset, 10) || 0; // Default offset is 0
+
+  const tasks = await Task.find(filter)
+    .sort("createdAt")
+    .limit(limit)
+    .skip(offset);
+
   res.status(200).json({ tasks });
 });
 
