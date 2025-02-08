@@ -31,13 +31,6 @@ const projectSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Please provice user"],
     },
-    users: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-    ], // Array of objects containing user ID, name, and role
     member: [
       {
         users: {
