@@ -16,6 +16,7 @@ const ratelimiter = require("express-rate-limit");
 //Router
 const authRouter = require("./routes/auth");
 const tasks = require("./routes/task");
+const asset = require("./routes/asset");
 const projects = require("./routes/project");
 
 const port = process.env.PORT || 3001;
@@ -44,6 +45,7 @@ app.use(xss());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/tasks", authentication, tasks);
 app.use("/api/v1/projects", authentication, projects);
+app.use("/api/v1/assets", authentication, asset);
 
 //error handler
 app.use(notFound);
