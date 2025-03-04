@@ -33,8 +33,12 @@ const assetSchema = new mongoose.Schema({
   last_inspected_date: {
     type: "date",
   },
+  // Add image field
+  image: {
+    type: String, // or "Buffer" if you want to store the image data directly
+    default: null,
+  },
 
-  // Array field
   similar_assets: {
     type: "array",
     elements: {
