@@ -13,6 +13,10 @@ api_phoenix is a RESTful API built with Node.js, Express, and MongoDB. It provid
 - JSON Web Tokens (JWT)
 - bcryptjs
 
+## Punycode
+
+This project uses the `punycode` library for handling internationalized domain names (IDNs). Punycode is a character encoding scheme that allows Unicode characters to be represented using ASCII characters. This is important for ensuring that domain names with non-ASCII characters can be used in systems that only support ASCII.
+
 ## Installation
 
 1.  Clone the repository:
