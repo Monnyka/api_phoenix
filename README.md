@@ -31,6 +31,23 @@ This project uses the `punycode` library for handling internationalized domain n
     npm install
     ```
 
+## Git Command
+
+1. Create Feature Branch
+
+   ```bash
+   git switch -c featureOne
+   ```
+
+2. Switch to master branch
+   ```
+   git switch master
+   ```
+3. Merge to master branch
+   ```
+   git merge featureOne
+   ```
+
 ## Usage
 
 1.  Start the server:
