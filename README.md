@@ -40,10 +40,13 @@ This project uses the `punycode` library for handling internationalized domain n
    ```
 
 2. Switch to master branch
+
    ```
    git switch master
    ```
+
 3. Merge to master branch
+
    ```
    git merge featureOne
    ```
