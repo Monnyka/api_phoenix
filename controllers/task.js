@@ -28,6 +28,16 @@ const createTask = asyncWrapper(async (req, res) => {
   res.status(201).json({ task });
 });
 
+const createTaskBulk = asyncWrapper(async (req, res) => {
+  const tasks = req.body;
+  //validate the request body
+  if (!Array.isArray(req.body) || req.body.length == 0) {
+    return res.status(400).json(next(createCustomerError("Empty Array")));
+  }
+  const createTask = await Task.insertMany(tasks, { ordered: false });
+  res.status(201).json(tasks);
+});
+
 const getTask = asyncWrapper(async (req, res) => {
   const {
     user: { userId },
@@ -74,6 +84,7 @@ const updateTask = asyncWrapper(async (req, res) => {
 module.exports = {
   getAllItems,
   createTask,
+  createTaskBulk,
   getTask,
   deleteTask,
   updateTask,
