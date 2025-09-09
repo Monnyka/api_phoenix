@@ -1,6 +1,6 @@
-const Task = require("../models/Task");
+const Task = require("../src/models/Task");
 const asyncWrapper = require("../middleware/async");
-const { createCustomerError } = require("../error/custom-error");
+const { createCustomerError } = require("../src/error/custom-error");
 
 const getAllItems = asyncWrapper(async (req, res) => {
   const filter = { createdBy: req.user.userId };

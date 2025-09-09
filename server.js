@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const notFound = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
-const connectDB = require("./db/connect");
+const connectDB = require("./src/db/connect");
 require("dotenv").config();
 
 const authentication = require("./middleware/authentication");
