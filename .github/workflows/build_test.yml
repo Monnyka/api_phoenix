@@ -61,3 +61,16 @@ jobs:
         run: |
           curl -H "Authorization: Bearer BvnmaxcdYTGDndk5rSq1" https://watchtower.monnyka.top/v1/update
         if: success()
+      - name: Show available npm scripts
+        run: npm run
+        if: failure()
+      - name: ntfy-failure-notifications
+        uses: niniyas/ntfy-action@master
+        if: failure()
+        with:
+          url: "https://ntfy.monnyka.top"
+          topic: "server"
+          priority: 4
+          headers: '{"authorization": "Basic 123456", "another-one": "Basic 123456"}'
+          tags: -1,crying_face,action,failed,error
+          details: Workflow has been failed. Please check.
