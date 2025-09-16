@@ -3,7 +3,7 @@ const app = express();
 const notFound = require("./src/middleware/not-found");
 const errorHandlerMiddleware = require("./src/middleware/error-handler");
 const connectDB = require("./src/config/connect");
-require("dotenv").config();
+require("dotenv").config({ path: "./src/config/.env" });
 
 const authentication = require("./src/middleware/authentication");
 
