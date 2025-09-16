@@ -1,7 +1,7 @@
-const User = require("../src/models/User");
+const User = require("../../src/models/User");
 const { StatusCodes } = require("http-status-codes");
 const asyncWrapper = require("../middleware/async");
-const { createCustomerError } = require("../src/error/custom-error");
+const { createCustomerError } = require("../../src/error/custom-error");
 
 const isEmailExists = async (email) => {
   return await User.exists({ email });

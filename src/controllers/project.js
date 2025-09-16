@@ -1,6 +1,6 @@
-const Project = require("../src/models/Project");
+const Project = require("../models/Project");
 const asyncWrapper = require("../middleware/async");
-const { createCustomError } = require("../src/error/custom-error");
+const { createCustomError } = require("../error/custom-error");
 
 // Create a new project
 const createProject = asyncWrapper(async (req, res, next) => {

@@ -1,5 +1,5 @@
-const Transaction = require("../src/models/Transaction");
-const User = require("../src/models/User");
+const Transaction = require("../models/Transaction");
+const User = require("../models/User");
 
 // Add a new transaction (income or expense)
 const addTransaction = async (req, res) => {

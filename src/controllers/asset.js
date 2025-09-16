@@ -2,9 +2,9 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 
-const Asset = require("../src/models/Asset");
+const Asset = require("../models/Asset");
 const asyncWrapper = require("../middleware/async");
-const { createCustomError } = require("../src/error/custom-error");
+const { createCustomError } = require("../error/custom-error");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
