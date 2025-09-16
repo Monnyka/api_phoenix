@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const notFound = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/error-handler");
-const connectDB = require("./db/connect");
-require("dotenv").config();
+const notFound = require("./src/middleware/not-found");
+const errorHandlerMiddleware = require("./src/middleware/error-handler");
+const connectDB = require("./src/config/connect");
+require("dotenv").config({ path: "./src/config/.env" });
 
-const authentication = require("./middleware/authentication");
+const authentication = require("./src/middleware/authentication");
 
 //Extra Security Pakages
 const helmet = require("helmet");
@@ -14,11 +14,11 @@ const xss = require("xss-clean");
 const ratelimiter = require("express-rate-limit");
 
 //Router
-const authRouter = require("./routes/auth");
-const tasks = require("./routes/task");
-const assets = require("./routes/asset");
-const projects = require("./routes/project");
-const transactions = require("./routes/transaction");
+const authRouter = require("./src/routes/auth");
+const tasks = require("./src/routes/task");
+const assets = require("./src/routes/asset");
+const projects = require("./src/routes/project");
+const transactions = require("./src/routes/transaction");
 
 const port = process.env.PORT || 3001;
 
