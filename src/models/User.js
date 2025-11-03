@@ -20,8 +20,16 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please provide password"],
+    required: [false, "Please provide password"],
     minlength: 6,
+  },
+  githubId: {
+    type: String,
+    unique: true,
+    sparse: true,
+  },
+  avatar: {
+    type: String,
   },
   balance: {
     type: Number,
@@ -32,6 +40,9 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", async function () {
+  // Only hash password if it exists and has been modified
+  if (!this.password || !this.isModified("password")) return;
+
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });

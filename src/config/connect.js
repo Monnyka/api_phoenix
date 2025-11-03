@@ -10,7 +10,7 @@ const connectDB = async (url) => {
       pass: process.env.DBPASS,
       authMechanism: process.env.DBAUTHMECHANISM,
     };
-    await mongoose.connect(url, options);
+    mongoose.connect(url, options);
     console.log("Connected to database successfully");
   } catch (err) {
     console.error("Error connecting to database:", err);
