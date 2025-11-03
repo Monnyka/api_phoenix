@@ -4,6 +4,8 @@ const notFound = require("./src/middleware/not-found");
 const errorHandlerMiddleware = require("./src/middleware/error-handler");
 const connectDB = require("./src/config/connect");
 require("dotenv").config({ path: "./src/config/.env" });
+const passport = require("./src/config/passport");
+const session = require("express-session");
 
 const authentication = require("./src/middleware/authentication");
 
@@ -42,6 +44,17 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+// Session middleware (must be before passport and routes)
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your_default_session_secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/tasks", authentication, tasks);
@@ -52,6 +65,7 @@ app.use("/api/v1/transactions", authentication, transactions);
 //error handler
 app.use(notFound);
 app.use(errorHandlerMiddleware);
+app.use(passport.session());
 
 const start = async () => {
   try {
