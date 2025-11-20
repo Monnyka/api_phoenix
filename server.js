@@ -65,7 +65,6 @@ app.use("/api/v1/transactions", authentication, transactions);
 //error handler
 app.use(notFound);
 app.use(errorHandlerMiddleware);
-app.use(passport.session());
 
 const start = async () => {
   try {
